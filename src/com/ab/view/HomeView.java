@@ -41,7 +41,7 @@ public class HomeView extends JPanel{
 		top.setPreferredSize(new Dimension(1280, 200));
 		top.setBackground(new Color(33,33,33));
 		
-		JPanel topLeft = new RoomTemperature();
+		JPanel topLeft = RoomTemperature.getInstance();
 		top.add(topLeft);
 		
 		JPanel spacePanleTop = new JPanel();
@@ -49,14 +49,14 @@ public class HomeView extends JPanel{
 		spacePanleTop.setBackground(new Color(33,33,33));
 		top.add(spacePanleTop);
 		
-		JPanel topRight = new RoomPressure();
+		JPanel topRight = RoomPressure.getInstance();
 		top.add(topRight);
 
 		JPanel center = new JPanel();
 		center.setPreferredSize(new Dimension(1280, 200));
 		center.setBackground(new Color(33,33,33));
 		
-		JPanel centerLeft = new RoomHumidity();
+		JPanel centerLeft = RoomHumidity.getInstance();
 		center.add(centerLeft);
 		
 		JPanel spacePanleCenter = new JPanel();
@@ -64,14 +64,14 @@ public class HomeView extends JPanel{
 		spacePanleCenter.setBackground(new Color(33,33,33));
 		center.add(spacePanleCenter);
 
-		JPanel centerRigth = new RoomVOC();
+		JPanel centerRigth = RoomVOC.getInstance();
 		center.add(centerRigth);
 
 		JPanel bottom = new JPanel();
 		bottom.setPreferredSize(new Dimension(1280, 200));
 		bottom.setBackground(new Color(33,33,33));
 		
-		JPanel bottomLeft = new RoomAirStandard();
+		JPanel bottomLeft = RoomAirStandard.getInstance();
 		bottom.add(bottomLeft);
 		
 		JPanel spacePanleBottom = new JPanel();

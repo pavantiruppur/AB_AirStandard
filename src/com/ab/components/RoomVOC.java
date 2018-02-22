@@ -16,7 +16,15 @@ public class RoomVOC extends JPanel {
 	JLabel valueLbl;
 	String value = "120";
 	
-	public RoomVOC() {
+	private static RoomVOC roomVOC = null;
+	public static RoomVOC getInstance() {
+		if (roomVOC == null) {
+			roomVOC = new RoomVOC();
+		}
+		return roomVOC;
+	}
+	
+	private RoomVOC() {
 		Icon logoIcon = new ImageIcon(getClass().getClassLoader().getResource("resources/images/voc-icon.png"));
 		logoLbl = new JLabel();
 		logoLbl.setHorizontalAlignment(JLabel.CENTER);
@@ -39,5 +47,15 @@ public class RoomVOC extends JPanel {
 		add(logoLbl);
 		add(valueLbl);
 		add(typePanel);
+	}
+	
+	public void updateValue(String value) {
+		try{
+			this.value = String.valueOf(Double.parseDouble(value));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		valueLbl.setText("<html><font color=#a9a9a9>"+ this.value + "</font>" + "</html>");
+		this.validate();
 	}
 }

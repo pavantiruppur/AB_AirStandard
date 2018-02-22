@@ -17,7 +17,15 @@ public class RoomTemperature extends JPanel {
 	JLabel valueLbl;
 	String value = "23.0";
 	
-	public RoomTemperature() {
+	private static RoomTemperature roomTemperature = null;
+	public static RoomTemperature getInstance() {
+		if (roomTemperature == null) {
+			roomTemperature = new RoomTemperature();
+		}
+		return roomTemperature;
+	}
+	
+	private RoomTemperature() {
 		Icon logoIcon = new ImageIcon(getClass().getClassLoader().getResource("resources/images/temperature-icon.png"));
 		logoLbl = new JLabel();
 		logoLbl.setHorizontalAlignment(JLabel.CENTER);
@@ -41,5 +49,15 @@ public class RoomTemperature extends JPanel {
 		add(valueLbl);
 		add(typePanel);
 		
+	}
+	
+	public void updateValue(String value) {
+		try{
+			this.value = String.valueOf(Double.parseDouble(value));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		valueLbl.setText("<html><font color=#a9a9a9>"+ this.value + "</font>" + "</html>");
+		this.validate();
 	}
 }

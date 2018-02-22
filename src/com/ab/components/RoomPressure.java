@@ -16,7 +16,15 @@ public class RoomPressure extends JPanel {
 	JLabel valueLbl;
 	String value = "120";
 	
-	public RoomPressure() {
+	private static RoomPressure roomPressure = null;
+	public static RoomPressure getInstance() {
+		if (roomPressure == null) {
+			roomPressure = new RoomPressure();
+		}
+		return roomPressure;
+	}
+	
+	private RoomPressure() {
 		Icon logoIcon = new ImageIcon(getClass().getClassLoader().getResource("resources/images/pressure-icon.png"));
 		logoLbl = new JLabel();
 		logoLbl.setHorizontalAlignment(JLabel.CENTER);
@@ -39,5 +47,15 @@ public class RoomPressure extends JPanel {
 		add(logoLbl);
 		add(valueLbl);
 		add(typePanel);
+	}
+	
+	public void updateValue(String value) {
+		try{
+			this.value = String.valueOf(Double.parseDouble(value));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		valueLbl.setText("<html><font color=#a9a9a9>"+ this.value + "</font>" + "</html>");
+		this.validate();
 	}
 }
