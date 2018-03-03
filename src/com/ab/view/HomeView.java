@@ -53,7 +53,7 @@ public class HomeView extends JPanel{
 		top.add(topRight);
 
 		JPanel center = new JPanel();
-		center.setPreferredSize(new Dimension(1280, 200));
+		center.setPreferredSize(new Dimension(1280, 230));
 		center.setBackground(new Color(33,33,33));
 		
 		JPanel centerLeft = RoomHumidity.getInstance();
@@ -75,7 +75,7 @@ public class HomeView extends JPanel{
 		bottom.add(bottomLeft);
 		
 		JPanel spacePanleBottom = new JPanel();
-		spacePanleBottom.setPreferredSize(new Dimension(150, 200));
+		spacePanleBottom.setPreferredSize(new Dimension(10, 200));
 		spacePanleBottom.setBackground(new Color(33,33,33));
 		bottom.add(spacePanleBottom);
 
