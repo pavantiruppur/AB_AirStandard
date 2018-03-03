@@ -25,6 +25,8 @@ public class RoomVOC extends JPanel {
 	}
 	
 	private RoomVOC() {
+		Components.setFlowLayoutPadding(FlowLayout.LEFT, this, 10, 3);
+		setPreferredSize(new Dimension(600, 190));
 		Icon logoIcon = new ImageIcon(getClass().getClassLoader().getResource("resources/images/voc-icon.png"));
 		logoLbl = new JLabel();
 		logoLbl.setHorizontalAlignment(JLabel.CENTER);

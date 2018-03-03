@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
-import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -26,6 +25,7 @@ public class RoomAirStandard extends JPanel {
 	}
 	
 	private RoomAirStandard() {
+		Components.setFlowLayoutPadding(FlowLayout.LEFT, this, 10, 3);
 		setPreferredSize(new Dimension(600, 190));
 //		setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		Icon logoIcon = new ImageIcon(getClass().getClassLoader().getResource("resources/images/particle-icon.png"));
@@ -48,9 +48,9 @@ public class RoomAirStandard extends JPanel {
 		add(valuePanel);
 		
 		setBackground(new Color(33,33,33));
-		JPanel typePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		JPanel typePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 //		typePanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-		typePanel.setPreferredSize(new Dimension(240, 40));
+		typePanel.setPreferredSize(new Dimension(270, 40));
 		JLabel typeLbl = new JLabel();
 		typeLbl.setText("<html><font color=#a9a9a9>2.5 - 10 microns</font></html>");
 		typeLbl.setFont(new Font("ArialRegular", Font.PLAIN, 20));
@@ -61,7 +61,7 @@ public class RoomAirStandard extends JPanel {
 	
 	public void updateValue(String value) {
 		try{
-			this.value = String.valueOf(Double.parseDouble(value));
+			this.value = String.valueOf(Integer.parseInt(value));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

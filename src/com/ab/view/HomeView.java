@@ -45,7 +45,7 @@ public class HomeView extends JPanel{
 		top.add(topLeft);
 		
 		JPanel spacePanleTop = new JPanel();
-		spacePanleTop.setPreferredSize(new Dimension(50, 200));
+		spacePanleTop.setPreferredSize(new Dimension(20, 200));
 		spacePanleTop.setBackground(new Color(33,33,33));
 		top.add(spacePanleTop);
 		
@@ -60,7 +60,7 @@ public class HomeView extends JPanel{
 		center.add(centerLeft);
 		
 		JPanel spacePanleCenter = new JPanel();
-		spacePanleCenter.setPreferredSize(new Dimension(180, 200));
+		spacePanleCenter.setPreferredSize(new Dimension(100, 200));
 		spacePanleCenter.setBackground(new Color(33,33,33));
 		center.add(spacePanleCenter);
 

@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
-import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -15,7 +14,7 @@ public class RoomTemperature extends JPanel {
 
 	JLabel logoLbl;
 	JLabel valueLbl;
-	String value = "23.0";
+	String value = "24.2";
 	
 	private static RoomTemperature roomTemperature = null;
 	public static RoomTemperature getInstance() {
@@ -26,6 +25,8 @@ public class RoomTemperature extends JPanel {
 	}
 	
 	private RoomTemperature() {
+		Components.setFlowLayoutPadding(FlowLayout.LEFT, this, 10, 3);
+		setPreferredSize(new Dimension(600, 190));
 		Icon logoIcon = new ImageIcon(getClass().getClassLoader().getResource("resources/images/temperature-icon.png"));
 		logoLbl = new JLabel();
 		logoLbl.setHorizontalAlignment(JLabel.CENTER);

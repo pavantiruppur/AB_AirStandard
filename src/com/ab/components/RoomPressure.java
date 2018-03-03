@@ -25,6 +25,8 @@ public class RoomPressure extends JPanel {
 	}
 	
 	private RoomPressure() {
+		Components.setFlowLayoutPadding(FlowLayout.LEFT, this, 10, 3);
+		setPreferredSize(new Dimension(580, 190));
 		Icon logoIcon = new ImageIcon(getClass().getClassLoader().getResource("resources/images/pressure-icon.png"));
 		logoLbl = new JLabel();
 		logoLbl.setHorizontalAlignment(JLabel.CENTER);
@@ -51,7 +53,7 @@ public class RoomPressure extends JPanel {
 	
 	public void updateValue(String value) {
 		try{
-			this.value = String.valueOf(Double.parseDouble(value));
+			this.value = String.valueOf(Integer.parseInt(value));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
