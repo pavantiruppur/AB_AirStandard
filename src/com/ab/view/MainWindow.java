@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.ab.action.FooterAction;
 import com.ab.components.Components;
 
 public class MainWindow {
@@ -65,7 +66,7 @@ public class MainWindow {
 		body.setBackground(new Color(33,33,33));
 
 		body.add(HomeView.getInstance());
-		
+		body.add(GraphView.getInstance());
 		mainPanel.add(body);
 	}
 	
@@ -116,12 +117,13 @@ public class MainWindow {
 		logoLbl_graph.setHorizontalAlignment(JLabel.LEFT);
 		logoLbl_graph.setVerticalAlignment(JLabel.CENTER);
 		logoLbl_graph.setIcon(logoIcon_graph);
-		
+		logoLbl_graph.addMouseListener(new FooterAction());
 		footer.add(logoLbl_graph);
 		
 
 		Icon logoIcon_home = new ImageIcon(getClass().getClassLoader().getResource("resources/images/home-menu.png"));
 		JLabel logoLbl_home = new JLabel();
+		logoLbl_home.setName("Home");
 		logoLbl_home.setPreferredSize(new Dimension(100, 50));
 		logoLbl_home.setHorizontalAlignment(JLabel.LEFT);
 		logoLbl_home.setVerticalAlignment(JLabel.CENTER);
