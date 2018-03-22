@@ -17,7 +17,7 @@ import com.ab.components.Components;
 
 public class MainWindow {
 
-	static MainWindow instance; 
+	static MainWindow instance;
 	
 	public synchronized static MainWindow getInstance() {
 		if (instance == null) {
@@ -128,8 +128,8 @@ public class MainWindow {
 		logoLbl_home.setHorizontalAlignment(JLabel.LEFT);
 		logoLbl_home.setVerticalAlignment(JLabel.CENTER);
 		logoLbl_home.setIcon(logoIcon_home);
-		
 		footer.add(logoLbl_home);
+
 		mainPanel.add(footer);
 	}
 	
