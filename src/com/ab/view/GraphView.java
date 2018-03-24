@@ -26,12 +26,8 @@ public class GraphView extends JPanel {
 		return instance;
 	}
 
-
-
 	private void init() {
-
 		setPreferredSize(new Dimension(1280, 700));
-
 	}
 
 	protected void paintComponent(Graphics g) {
