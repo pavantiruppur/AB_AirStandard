@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 public class RoomTemperature extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	JLabel logoLbl;
 	JLabel valueLbl;
 	String value = "24.2";

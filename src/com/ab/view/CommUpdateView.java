@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
+import com.ab.GraphReaderWriter;
 import com.ab.Handler;
 import com.ab.ModelAndView;
 import com.ab.annoation.View;
@@ -49,25 +50,33 @@ public class CommUpdateView {
 	public void loadC1(ModelAndView modelAndView) {
 		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&");
 		RoomTemperature roomTemperature = RoomTemperature.getInstance();
-		roomTemperature.updateValue((String)((ModelAndView)modelAndView.getModel()).getModel());
+		String value = (String)((ModelAndView)modelAndView.getModel()).getModel();
+		roomTemperature.updateValue(value);
+		GraphReaderWriter.storeValues("temperature", value);
 	}
 	
 	@ViewAction(action = "c2")
 	public void loadC2(ModelAndView modelAndView) {
 		RoomHumidity roomHumidity = RoomHumidity.getInstance();
-		roomHumidity.updateValue((String)((ModelAndView)modelAndView.getModel()).getModel());
+		String value = (String)((ModelAndView)modelAndView.getModel()).getModel();
+		roomHumidity.updateValue(value);
+		GraphReaderWriter.storeValues("humidity", value);
 	}
 	
 	@ViewAction(action = "c3")
 	public void loadC3(ModelAndView modelAndView) {
 		RoomVOC roomVOC = RoomVOC.getInstance();
-		roomVOC.updateValue((String)((ModelAndView)modelAndView.getModel()).getModel());
+		String value = (String)((ModelAndView)modelAndView.getModel()).getModel();
+		roomVOC.updateValue(value);
+		GraphReaderWriter.storeValues("voc", value);
 	}
 	
 	@ViewAction(action = "c4")
 	public void loadC4(ModelAndView modelAndView) {
 		RoomAirStandard roomAirStandard = RoomAirStandard.getInstance();
-		roomAirStandard.updateValue((String)((ModelAndView)modelAndView.getModel()).getModel());
+		String value = (String)((ModelAndView)modelAndView.getModel()).getModel();
+		roomAirStandard.updateValue(value);
+		GraphReaderWriter.storeValues("particle", value);
 	}
 	
 	@ViewAction(action = "c5")
