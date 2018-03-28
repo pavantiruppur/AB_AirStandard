@@ -19,6 +19,9 @@ public class MainWindow {
 
 	static MainWindow instance;
 	
+	public static final String GRAPH = "graph";
+	public static final String HOME = "home";
+	
 	public synchronized static MainWindow getInstance() {
 		if (instance == null) {
 			instance = new MainWindow();
@@ -117,7 +120,7 @@ public class MainWindow {
 		logoLbl_graph.setHorizontalAlignment(JLabel.LEFT);
 		logoLbl_graph.setVerticalAlignment(JLabel.CENTER);
 		logoLbl_graph.setIcon(logoIcon_graph);
-		logoLbl_graph.addMouseListener(new FooterAction());
+		logoLbl_graph.addMouseListener(new FooterAction(GRAPH));
 		footer.add(logoLbl_graph);
 		
 
@@ -128,7 +131,7 @@ public class MainWindow {
 		logoLbl_home.setHorizontalAlignment(JLabel.LEFT);
 		logoLbl_home.setVerticalAlignment(JLabel.CENTER);
 		logoLbl_home.setIcon(logoIcon_home);
-		//logoLbl_home.addMouseListener(new FooterAction());
+		logoLbl_home.addMouseListener(new FooterAction(HOME));
 		footer.add(logoLbl_home);
 
 		mainPanel.add(footer);

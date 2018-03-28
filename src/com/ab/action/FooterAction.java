@@ -5,8 +5,16 @@ import java.awt.event.MouseListener;
 
 import com.ab.view.GraphView;
 import com.ab.view.HomeView;
+import com.ab.view.MainWindow;
 
 public class FooterAction implements MouseListener{
+
+	private String action;
+
+	public FooterAction(String action) {
+		super();
+		this.action = action;
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -15,8 +23,13 @@ public class FooterAction implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		HomeView.getInstance().setVisible(false);
-		GraphView.getInstance().setVisible(true); 
+		if(action.equals(MainWindow.GRAPH)) {
+			HomeView.getInstance().setVisible(false);
+			GraphView.getInstance().setVisible(true);
+		} else if(action.equals(MainWindow.HOME)) {
+			GraphView.getInstance().setVisible(false);
+			HomeView.getInstance().setVisible(true);
+		}
 	}
 
 	@Override

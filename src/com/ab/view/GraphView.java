@@ -45,11 +45,11 @@ public class GraphView extends JPanel {
 		ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource("resources/images/graph-bg.jpg"));
 		g2.drawImage(imageIcon.getImage(), 0, 0, null);
 		g2.translate(getWidth() / 2, getHeight() / 2);
-		plotHours((Graphics2D) g);
+		plotXYAxes((Graphics2D) g);
 		drawGraph((Graphics2D) g);
 	}
 	
-	private void plotHours(Graphics2D g2) {
+	private void plotXYAxes(Graphics2D g2) {
 		g2.setPaint(Color.WHITE);
 		g2.drawString(LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm")), 500, 260);
 		for(int i = LocalTime.now().getHour()-1, x = 426; x >= -470; i--, x -= 88) {
@@ -77,8 +77,8 @@ public class GraphView extends JPanel {
 		g2.setPaint(color);
 		double div = yPAD / Collections.max(Arrays.asList(values));
 		for(int i = 0; i < values.length - 1; i++) {
-			g2.draw(new Line2D.Double(start, range - (values[i] * div), start + (175 / values.length), range - (values[i + 1] * div)));
-			start += 175 / values.length;
+			g2.draw(new Line2D.Double(start, range - (values[i] * div), start + (168.0 / (values.length - 1)), range - (values[i + 1] * div)));
+			start += 168.0 / (values.length - 1);
 		}
 	}
 
