@@ -5,7 +5,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.geom.Line2D;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Collections;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -15,6 +20,8 @@ import com.ab.GraphReaderWriter;
 public class GraphView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private static final double xPAD = -79;
+	private static final double yPAD = 20.65;
 	private static GraphView instance;
 
 	private GraphView() {
@@ -34,39 +41,44 @@ public class GraphView extends JPanel {
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
 		Graphics2D g2 = (Graphics2D) g;
 		ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource("resources/images/graph-bg.jpg"));
 		g2.drawImage(imageIcon.getImage(), 0, 0, null);
 		g2.translate(getWidth() / 2, getHeight() / 2);
-
-		g2.scale(6.0, 6.0);
-		g2.setStroke(new BasicStroke(0.01f));
-		g2.setPaint(Color.WHITE);
-
-		//g2.draw(new Line2D.Double(-80, 40, 95, 40)); // Temperature start axis
-		drawGraph(g2, -80, 40, (21.25/30.0), GraphReaderWriter.readValues("temperature"));
-		
-		//g2.draw(new Line2D.Double(-80, 18.75, 95, 18.75)); // Temperature end & Humidity start axis
-		drawGraph(g2, -80, 18.75, (21.25/60.0), GraphReaderWriter.readValues("humidity"));
-		
-		//g2.draw(new Line2D.Double(-80, -2.5, 95, -2.5)); // Humidity end & VOC start axis
-		drawGraph(g2, -80, -2.5, (21.25/20), GraphReaderWriter.readValues("voc"));
-		
-		//g2.draw(new Line2D.Double(-80, -23.75, 95, -23.75)); // VOC end & Particle start axis
-		drawGraph(g2, -80, -23.75, (21.25/5000.0), GraphReaderWriter.readValues("particle"));
-		
-		//g2.draw(new Line2D.Double(-80, -45, 95, -45)); // Graph end
-		//g2.draw(new Line2D.Double(-80, 40, -80, -45)); // Y axis
-
+		plotHours((Graphics2D) g);
+		drawGraph((Graphics2D) g);
 	}
 	
-	private void drawGraph(Graphics2D g2, double start, double range, double div, String[] values) {
-		for(int i = 0; i<values.length-1; i++) {
-			double val = Double.parseDouble(values[i]);
-			double valN = Double.parseDouble(values[i+1]);
-			g2.draw(new Line2D.Double(start, range - (val * div), start + (175/values.length), range - (valN * div)));
-			start += 175/values.length;
+	private void plotHours(Graphics2D g2) {
+		g2.setPaint(Color.WHITE);
+		g2.drawString(LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm")), 500, 260);
+		for(int i = LocalTime.now().getHour()-1, x = 426; x >= -470; i--, x -= 88) {
+			int time = Math.abs(i) % 12;
+			g2.drawString(String.valueOf(time == 0 ? 12 : time), x, 260);
+		}
+		g2.setStroke(new BasicStroke(1.0f));
+		g2.drawString(String.valueOf(Collections.max(Arrays.asList(GraphReaderWriter.readValues("temperature")))), -530, 130);
+		g2.drawString(String.valueOf(Collections.max(Arrays.asList(GraphReaderWriter.readValues("humidity")))), -530, 5);
+		g2.drawString(String.valueOf(Collections.max(Arrays.asList(GraphReaderWriter.readValues("voc")))), -530, -125);
+		g2.drawString(String.valueOf(Collections.max(Arrays.asList(GraphReaderWriter.readValues("particle")))), -530, -253);
+	}
+	
+	private void drawGraph(Graphics2D g2) {
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g2.scale(6.0, 6.0);
+		g2.setStroke(new BasicStroke(0.3f));
+		plotValues(g2, xPAD, 40, GraphReaderWriter.readValues("temperature"), Color.RED);
+		plotValues(g2, xPAD, 18.75, GraphReaderWriter.readValues("humidity"), Color.BLUE);
+		plotValues(g2, xPAD, -2.5, GraphReaderWriter.readValues("voc"), Color.GREEN);
+		plotValues(g2, xPAD, -23.75, GraphReaderWriter.readValues("particle"), Color.PINK);
+	}
+	
+	private void plotValues(Graphics2D g2, double start, double range, Double[] values, Color color) {
+		g2.setPaint(color);
+		double div = yPAD / Collections.max(Arrays.asList(values));
+		for(int i = 0; i < values.length - 1; i++) {
+			g2.draw(new Line2D.Double(start, range - (values[i] * div), start + (175 / values.length), range - (values[i + 1] * div)));
+			start += 175 / values.length;
 		}
 	}
 

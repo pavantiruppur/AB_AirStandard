@@ -128,6 +128,7 @@ public class MainWindow {
 		logoLbl_home.setHorizontalAlignment(JLabel.LEFT);
 		logoLbl_home.setVerticalAlignment(JLabel.CENTER);
 		logoLbl_home.setIcon(logoIcon_home);
+		//logoLbl_home.addMouseListener(new FooterAction());
 		footer.add(logoLbl_home);
 
 		mainPanel.add(footer);
