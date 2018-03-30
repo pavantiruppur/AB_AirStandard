@@ -90,7 +90,6 @@ public class MainWindow {
 		logoLbl.setHorizontalAlignment(JLabel.LEFT);
 		logoLbl.setVerticalAlignment(JLabel.CENTER);
 		logoLbl.setIcon(logoIcon);
-		
 		footer.add(logoLbl);
 
 		Icon logoIcon_i = new ImageIcon(getClass().getClassLoader().getResource("resources/images/info-menu.png"));
@@ -100,7 +99,6 @@ public class MainWindow {
 		logoLbl_i.setHorizontalAlignment(JLabel.LEFT);
 		logoLbl_i.setVerticalAlignment(JLabel.CENTER);
 		logoLbl_i.setIcon(logoIcon_i);
-		
 		footer.add(logoLbl_i);
 		
 
@@ -110,7 +108,6 @@ public class MainWindow {
 		logoLbl_settings.setHorizontalAlignment(JLabel.LEFT);
 		logoLbl_settings.setVerticalAlignment(JLabel.CENTER);
 		logoLbl_settings.setIcon(logoIcon_settings);
-		
 		footer.add(logoLbl_settings);
 		
 
