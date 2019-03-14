@@ -53,7 +53,7 @@ public class RoomPressure extends JPanel {
 	
 	public void updateValue(String value) {
 		try{
-			this.value = String.valueOf(Integer.parseInt(value));
+			this.value = String.valueOf(Integer.parseInt(value) / 100);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
